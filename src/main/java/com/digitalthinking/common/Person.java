@@ -16,7 +16,7 @@ package com.digitalthinking.common;
 public class Person {
     
     private long id;
-    private String name;
+    private String names;
     private String surname;
     private String documentNumber;
     private String phone;
@@ -31,11 +31,11 @@ public class Person {
     }
 
     public String getName() {
-        return name;
+        return names;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.names = name;
     }
 
     public String getSurname() {
