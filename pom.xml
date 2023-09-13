@@ -34,7 +34,7 @@
         </developer>
     </developers>
         <profiles>
-        <profiles>
+        <profile>
             <id>azure_artifacts</id> 
             <repositories>
                 <repository>
