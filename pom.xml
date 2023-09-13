@@ -33,6 +33,22 @@
             <organizationUrl>https://digitalthinking.biz/es/ada-enterprise-core#contactus</organizationUrl>
         </developer>
     </developers>
+        <profiles>
+        <profiles>
+            <id>azure_artifacts</id> 
+            <repositories>
+                <repository>
+  <id>Prueba_librerias</id>
+  <url>https://pkgs.dev.azure.com/greg8408/4cd26484-9ffc-4364-b77c-6bcd71cd4bc7/_packaging/Prueba_librerias/maven/v1</url>
+  <releases>
+    <enabled>true</enabled>
+  </releases>
+  <snapshots>
+    <enabled>true</enabled>
+  </snapshots>
+                </repository>        
+            </repositories>
+    
     <build>
         <plugins>
             <plugin>
@@ -63,4 +79,6 @@
             </plugin>
         </plugins>
     </build>
+            </profile>
+    </profiles>
 </project>
