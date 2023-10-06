@@ -16,7 +16,7 @@ steps:
   persistCredentials: true
   fetchDepth: 0
 
-#Config gitversion 5.12.x
+#Config gitversion 5.3.x
 - task: gitversion/setup@0
   displayName: 'Setup git version'
   inputs:
@@ -25,20 +25,6 @@ steps:
 #calculate the version of source code
 - task: gitversion/execute@0
   displayName: 'Calculate SemVer'
-  
-  
-
-#print in console current version
-- script: echo current version is $(GitVersion.SemVer)
-  displayName: 'Display calculated version'
-
-#setting git user
-- task: CmdLine@2
-  displayName: Init git global config
-  inputs:
-    script: |
-        git config --global user.email "EMAIL-OF-PIPELINE-USER"
-        git config --global user.name "Pipeline"  
 
 - task: Maven@3
   inputs:
@@ -51,14 +37,5 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package  deploy:deploy-file'      
     mavenAuthenticateFeed: true
-    options: '-X -P azure_artifacts -Dpackaging="jar" -DrepositoryId="Librerias_Prueba" -Durl="https://pkgs.dev.azure.com/greg8408/4cd26484-9ffc-4364-b77c-6bcd71cd4bc7/_packaging/Librerias_Prueba/maven/v1" -DgroupId="com.digitalthinking" -DartifactId="common-library" -Dversion="$(GitVersion.SemVer)" -Dfile="$(System.DefaultWorkingDirectory)/target/common-library-0.0.1-SNAPSHOT.jar"'
-
-    #create Tag after publish the library
-- task: CmdLine@2
-  displayName: Create Git tag for current version
-  inputs:
-    script: |
-      git tag -a $(GitVersion.SemVer) -m "Creating tag with new $(GitVersion.SemVer)"
-      git push origin $(GitVersion.SemVer)
-
+    options: '-X -P azure_artifacts -Dpackaging="jar" -DrepositoryId="Librerias_Prueba" -Durl="https://pkgs.dev.azure.com/greg8408/4cd26484-9ffc-4364-b77c-6bcd71cd4bc7/_packaging/Librerias_Prueba/maven/v1" -DgroupId="com.digitalthinking" -DartifactId="common-library" -Dversion="0.0.1-SNAPSHOT" -Dfile="$(System.DefaultWorkingDirectory)/target/common-library-0.0.1-SNAPSHOT.jar"'
 
