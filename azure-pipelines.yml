@@ -10,6 +10,36 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+
+#Enable gitcommands using this account
+- checkout: self
+  persistCredentials: true
+  fetchDepth: 0
+
+#Config gitversion 5.12.x
+- task: gitversion/setup@0
+  displayName: 'Setup git version'
+  inputs:
+    versionSpec: '5.x.x'
+
+#calculate the version of source code
+- task: gitversion/execute@0
+  displayName: 'Calculate SemVer'
+  
+  
+
+#print in console current version
+- script: echo current version is $(GitVersion.SemVer)
+  displayName: 'Display calculated version'
+
+#setting git user
+- task: CmdLine@2
+  displayName: Init git global config
+  inputs:
+    script: |
+        git config --global user.email "EMAIL-OF-PIPELINE-USER"
+        git config --global user.name "Pipeline"  
+
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
