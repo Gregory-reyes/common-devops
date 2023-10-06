@@ -16,15 +16,6 @@ steps:
   persistCredentials: true
   fetchDepth: 0
 
-#Config gitversion 5.3.x
-- task: gitversion/setup@0
-  displayName: 'Setup git version'
-  inputs:
-    versionSpec: '5.x.x'
-
-#calculate the version of source code
-- task: gitversion/execute@0
-  displayName: 'Calculate SemVer'
 
 - task: Maven@3
   inputs:
