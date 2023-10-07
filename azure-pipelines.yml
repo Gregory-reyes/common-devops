@@ -11,7 +11,16 @@ pool:
 
 steps:
 
+#Enable gitcommands using this account
+- checkout: self
+  persistCredentials: true
+  fetchDepth: 0
 
+#Config gitversion 5.12.x
+- task: gitversion/setup@0
+  displayName: 'Setup git version'
+  inputs:
+    versionSpec: '5.x.x'
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
